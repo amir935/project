@@ -18,6 +18,8 @@ output application/json
 ---
 {
   "user": {
+  	
+  	
     "name": "John Doe",
     "credentials": {
       "password": "secret",
@@ -53,6 +55,8 @@ output application/json
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
 import dwl::functions
+
+
 
 fun MaskData(data) = data match  {
    case is Object -> data mapObject {
