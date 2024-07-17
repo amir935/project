@@ -54,14 +54,6 @@ output application/json
 output application/json
 import dwl::functions
 
-
-
-
-
-
-
-
-
 fun MaskData(data) = data match  {
    case is Object -> data mapObject {
        '$$': if((functions::toMask(vars.id)) contains '$$') "XXXX" 
