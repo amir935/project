@@ -19,7 +19,7 @@ variables:
   - name: MAVEN_OPTS
     value: '-Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
   - name: app.runtime
-    value: '4.6.1' # Update this to the supported runtime version
+    value: '4.5.0' # Update this to the supported runtime version
 
 steps:
   - task: CacheBeta@0
