@@ -10,7 +10,7 @@ fun toMask(program) = program match{
 
 fun toHalfMask(program) = program match {
     case "5000" -> ["street","zip","name","amir"]
-    
+    case "5006" -> ["name","amir"]
      else -> []
 } 
 
