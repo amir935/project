@@ -40,18 +40,9 @@ steps:
         New-Item -Type Directory -Force "${HOME}/.m2"
         Copy-Item -Force "$(settingsxml.secureFilePath)" "${HOME}/.m2/settings.xml"
 
-  - script: |
-    echo "Server: $(server)"
-    echo "Environment: $(environment)"
-    echo "Worker: $(worker)"
-    echo "Worker Type: $(workerType)"
-    echo "App Runtime: $(app.runtime)"
-    echo "App Name: $(app.name)"
-    echo "Anypoint Username: $(anypoint.username)"
-    echo "Anypoint Password: $(anypoint.password)"
-  displayName: 'Print Environment Variables'      
+       
 
-  - task: Maven@3
+- task: Maven@3
     inputs:
       mavenPomFile: 'pom.xml'
       mavenOptions: '-Xmx3072m'
