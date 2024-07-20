@@ -10,22 +10,16 @@ trigger:
 
 pool:
   name: test
-  vmImage: "ubuntu-latest"
+  vmImage: 'ubuntu-latest'
 
 variables:
   - group: Build-Variable-Group
   - name: MAVEN_CACHE_FOLDER
     value: $(Pipeline.Workspace)/.m2/repository
   - name: MAVEN_OPTS
-<<<<<<< HEAD
-    value: "-Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)"
-  - name: app.runtime
-    value: "4.4.0" # Update this to the supported runtime version
-=======
     value: '-Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
   - name: app.runtime
     value: '4.4.0' # Update this to the supported runtime version
->>>>>>> 24337d8a7d020dc034f0de7647df613efd20fb48
 
 steps:
   - task: CacheBeta@0
@@ -37,58 +31,27 @@ steps:
   - task: DownloadSecureFile@1
     name: settingsxml
     inputs:
-      secureFile: "settings.xml"
+      secureFile: 'settings.xml'
 
   - task: PowerShell@2
     inputs:
-      targetType: "inline"
+      targetType: 'inline'
       script: |
         New-Item -Type Directory -Force "${HOME}/.m2"
         Copy-Item -Force "$(settingsxml.secureFilePath)" "${HOME}/.m2/settings.xml"
 
   - task: Maven@3
     inputs:
-      mavenPomFile: "pom.xml"
-      mavenOptions: "-Xmx3072m"
-      jdkVersionOption: "1.8"
-      jdkArchitectureOption: "x64"
+      mavenPomFile: 'pom.xml'
+      mavenOptions: '-Xmx3072m'
+      jdkVersionOption: '1.8'
+      jdkArchitectureOption: 'x64'
       mavenAuthenticateFeed: true
       publishJUnitResults: false
-      javaHomeOption: "JDKVersion"
-      mavenVersionOption: "Default"
+      javaHomeOption: 'JDKVersion'
+      mavenVersionOption: 'Default'
       effectivePomSkip: true
       sonarQubeRunAnalysis: false
-<<<<<<< HEAD
-      goals: "clean package $(MAVEN_OPTS) -DmuleDeploy -Dserver=$(server) -Denvironment=$(environment) -Dworker=$(worker) -DworkerType=$(workerType) -Dapp.runtime=$(app.runtime) -Dapp.name=$(app.name)"
-
-  - task: Maven@3
-    inputs:
-      mavenPomFile: "pom.xml"
-      mavenOptions: "-Xmx3072m"
-      jdkVersionOption: "1.8"
-      jdkArchitectureOption: "x64"
-      mavenAuthenticateFeed: true
-      publishJUnitResults: false
-      javaHomeOption: "JDKVersion"
-      mavenVersionOption: "Default"
-      effectivePomSkip: true
-      sonarQubeRunAnalysis: false
-      goals: "install $(MAVEN_OPTS) -DmuleDeploy -Dserver=$(server) -Denvironment=$(environment) -Dworker=$(worker) -DworkerType=$(workerType) -Dapp.runtime=$(app.runtime) -Dapp.name=$(app.name)"
-
-  - task: Maven@3
-    inputs:
-      mavenPomFile: "pom.xml"
-      mavenOptions: "-Xmx3072m"
-      jdkVersionOption: "1.8"
-      jdkArchitectureOption: "x64"
-      mavenAuthenticateFeed: true
-      publishJUnitResults: false
-      javaHomeOption: "JDKVersion"
-      mavenVersionOption: "Default"
-      effectivePomSkip: true
-      sonarQubeRunAnalysis: false
-      goals: "deploy $(MAVEN_OPTS) -DmuleDeploy -Dserver=$(server) -Denvironment=$(environment) -Dworker=$(worker) -DworkerType=$(workerType) -Dapp.runtime=$(app.runtime) -Dapp.name=$(app.name) -Danypoint.username=$(anypoint.username) -Danypoint.password=$(anypoint.password)"
-=======
       goals: 'clean package $(MAVEN_OPTS) -DmuleDeploy -Dserver=$(server) -Denvironment=$(environment) -Dworker=$(worker) -DworkerType=$(workerType) -Dapp.runtime=$(app.runtime) -Dapp.name=$(app.name)'
 
   - task: Maven@3
@@ -118,7 +81,6 @@ steps:
       effectivePomSkip: true
       sonarQubeRunAnalysis: false
       goals: 'deploy $(MAVEN_OPTS) -DmuleDeploy -Dserver=$(server) -Denvironment=$(environment) -Dworker=$(worker) -DworkerType=$(workerType) -Dapp.runtime=$(app.runtime) -Dapp.name=$(app.name) -Danypoint.username=$(anypoint.username) -Danypoint.password=$(anypoint.password)'
->>>>>>> 24337d8a7d020dc034f0de7647df613efd20fb48
 
   - script: |
       echo "Server: $(server)"
@@ -129,8 +91,4 @@ steps:
       echo "App Name: $(app.name)"
       echo "Anypoint Username: $(anypoint.username)"
       echo "Anypoint Password: $(anypoint.password)"
-<<<<<<< HEAD
-    displayName: "Print Environment Variables"
-=======
     displayName: 'Print Environment Variables'
->>>>>>> 24337d8a7d020dc034f0de7647df613efd20fb48
