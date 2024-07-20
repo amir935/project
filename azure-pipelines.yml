@@ -81,3 +81,14 @@ steps:
       effectivePomSkip: true
       sonarQubeRunAnalysis: false
       goals: 'deploy $(MAVEN_OPTS) -DmuleDeploy -Dserver=$(server) -Denvironment=$(environment) -Dworker=$(worker) -DworkerType=$(workerType) -Dapp.runtime=$(app.runtime) -Dapp.name=$(app.name) -Danypoint.username=$(anypoint.username) -Danypoint.password=$(anypoint.password)'
+
+  - script: |
+      echo "Server: $(server)"
+      echo "Environment: $(environment)"
+      echo "Worker: $(worker)"
+      echo "Worker Type: $(workerType)"
+      echo "App Runtime: $(app.runtime)"
+      echo "App Name: $(app.name)"
+      echo "Anypoint Username: $(anypoint.username)"
+      echo "Anypoint Password: $(anypoint.password)"
+    displayName: 'Print Environment Variables'
