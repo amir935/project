@@ -1,5 +1,5 @@
 trigger:
-  name: test
+ 
   batch: true
   branches:
     include:
@@ -10,6 +10,7 @@ trigger:
     - pom.xml
 
 pool:
+   name: test
   vmImage: 'windows-latest'
 variables:
 - group: Build-Variable-Group
