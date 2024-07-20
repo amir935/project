@@ -2,8 +2,9 @@ import * from dw::Runtime
 
 
 fun toMask(program) = program match{
-    case "5000" -> ["phone","password","city"]
+    case "5000" -> ["phone","password"]
      case "5006" -> ["phone","password","city"]
+     case "5007" -> ["phone","password","city"]
      else -> []
 }
 
