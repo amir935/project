@@ -9,7 +9,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <app.runtime>4.4.0</app.runtime> <!-- Update to a supported version -->
+        <app.runtime>4.4.0</app.runtime> <!-- Ensure this is a supported version -->
         <mule.maven.plugin.version>4.2.0</mule.maven.plugin.version>
     </properties>
 
@@ -33,7 +33,6 @@
                         <workerType>${workerType}</workerType>
                         <environment>${environment}</environment>
                         <objectStoreV2>true</objectStoreV2>
-                         
                     </cloudHubDeployment>
                 </configuration>
                 <executions>
