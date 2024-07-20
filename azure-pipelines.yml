@@ -40,9 +40,7 @@ steps:
         New-Item -Type Directory -Force "${HOME}/.m2"
         Copy-Item -Force "$(settingsxml.secureFilePath)" "${HOME}/.m2/settings.xml"
 
-       
-
-- task: Maven@3
+  - task: Maven@3
     inputs:
       mavenPomFile: 'pom.xml'
       mavenOptions: '-Xmx3072m'
@@ -83,6 +81,3 @@ steps:
       effectivePomSkip: true
       sonarQubeRunAnalysis: false
       goals: 'deploy $(MAVEN_OPTS) -DmuleDeploy -Dserver=$(server) -Denvironment=$(environment) -Dworker=$(worker) -DworkerType=$(workerType) -Dapp.runtime=$(app.runtime) -Dapp.name=$(app.name) -Danypoint.username=$(anypoint.username) -Danypoint.password=$(anypoint.password)'
-
-
-      
