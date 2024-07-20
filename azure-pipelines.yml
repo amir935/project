@@ -50,4 +50,18 @@ steps:
       mavenVersionOption: 'Default'
       effectivePomSkip: true
       sonarQubeRunAnalysis: false
-      goals: 'clean install package deploy $(MAVEN_OPTS) -DmuleDeploy -Dserver=$(server) -Denvironment=$(environment) -Dworker=$(worker) -DworkerType=$(workerType) -Dapp.runtime=$(app.runtime) -Dapp.name=$(app.name)'
+      goals: 'clean package $(MAVEN_OPTS) -DmuleDeploy -Dserver=$(server) -Denvironment=$(environment) -Dworker=$(worker) -DworkerType=$(workerType) -Dapp.runtime=$(app.runtime) -Dapp.name=$(app.name)'
+
+  - task: Maven@3
+    inputs:
+      mavenPomFile: 'pom.xml'
+      mavenOptions: '-Xmx3072m'
+      jdkVersionOption: '1.8'
+      jdkArchitectureOption: 'x64'
+      mavenAuthenticateFeed: true
+      publishJUnitResults: false
+      javaHomeOption: 'JDKVersion'
+      mavenVersionOption: 'Default'
+      effectivePomSkip: true
+      sonarQubeRunAnalysis: false
+      goals: 'install $(MAVEN_OPTS) -DmuleDeploy -Dserver=$(server) -Denvironment=$(environment) -Dworker=$(worker) -DworkerType=$(workerType) -Dapp.runtime=$(app.runtime) -Dapp.name=$(app.name)'
