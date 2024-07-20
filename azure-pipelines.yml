@@ -11,7 +11,7 @@ trigger:
 
 pool:
    name: test
-  vmImage: 'windows-latest'
+   vmImage: 'ubuntu-latest'
 variables:
 - group: Build-Variable-Group
 - name: MAVEN_CACHE_FOLDER
