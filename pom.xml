@@ -27,7 +27,7 @@
                         <username>${anypoint.username}</username>
                         <password>${anypoint.password}</password>
                         <server>${server}</server>
-                        <muleVersion>${app.runtime}</muleVersion>
+                        <muleVersion>4.4.0</muleVersion>
                         <applicationName>${app.name}</applicationName>
                         <workers>${worker}</workers>
                         <workerType>${workerType}</workerType>
