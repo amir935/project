@@ -61,7 +61,8 @@
                             <goal>install</goal>
                         </goals>
                         <configuration>
-                            <file>${project.build.directory}/${project.build.finalName}.jar</file>
+                            <file>${project.build.directory}/${project.build.finalName}-mule-application.jar</file>
+                            <packaging>jar</packaging>
                         </configuration>
                     </execution>
                 </executions>
