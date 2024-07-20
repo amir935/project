@@ -17,21 +17,18 @@
     </properties>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>3.2.0</version>
-            </plugin>
-            <plugin>
-                <groupId>org.mule.tools.maven</groupId>
-                <artifactId>mule-maven-plugin</artifactId>
-                <version>${mule.maven.plugin.version}</version>
-                <extensions>true</extensions>
-              <configuration>
+  <plugins>
+    <plugin>
+      <groupId>org.mule.tools.maven</groupId>
+      <artifactId>mule-maven-plugin</artifactId>
+      <version>${mule.maven.plugin.version}</version>
+      <extensions>true</extensions>
+      <configuration>
         <classifier>mule-application</classifier>
         <cloudHubDeployment>
           <uri>https://anypoint.mulesoft.com</uri>
+          <username>${anypoint.username}</username>
+          <password>${anypoint.password}</password>
           <server>${server}</server>
           <muleVersion>${app.runtime}</muleVersion>
           <applicationName>${app.name}</applicationName>
@@ -39,38 +36,20 @@
           <workerType>${workerType}</workerType>
           <environment>${environment}</environment>
           <objectStoreV2>true</objectStoreV2>
-          <username>${anypoint.username}</username>
-          <password>${anypoint.password}</password>
         </cloudHubDeployment>
       </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>package</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>3.1.1</version>
-                <executions>
-                    <execution>
-                        <id>default-install</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>install</goal>
-                        </goals>
-                        <configuration>
-                            <file>${project.build.directory}/${project.build.finalName}-mule-application.jar</file>
-                            <packaging>jar</packaging>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+      <executions>
+        <execution>
+          <goals>
+            <goal>package</goal>
+            <goal>deploy</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+</build>
+
 
     <dependencies>
         <dependency>
