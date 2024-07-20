@@ -33,7 +33,7 @@
                         <workerType>${workerType}</workerType>
                         <environment>${environment}</environment>
                         <objectStoreV2>true</objectStoreV2>
-                        <timeout>600</timeout> 
+                         
                     </cloudHubDeployment>
                 </configuration>
                 <executions>
