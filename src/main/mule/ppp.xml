@@ -6,8 +6,9 @@
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="39798e84-e153-4a1c-b6d7-98514a5b666e" >
-		<http:listener-connection host="0.0.0.0" port="8081" />
+		<http:listener-connection host="0.0.0.0" port="${http.port}" />
 	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="58e89cf2-5cc3-4b56-a5c0-ed0b202cdec4" file="dev.yaml" />
 	<flow name="pppFlow" doc:id="e3a75f8f-2fa9-4bc4-b3c3-670b6183f242" >
 		<http:listener doc:name="Listener" doc:id="f07a4140-6279-4358-81d0-fe996efd5b11" config-ref="HTTP_Listener_config" path="/dw"/>
 		<set-variable value="#[attributes.queryParams.id]" doc:name="Set Variable" doc:id="100a5f09-ca62-4d6b-857f-e80ceb41f220" variableName="id"/>
