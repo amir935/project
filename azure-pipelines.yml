@@ -1,27 +1,16 @@
-# Maven
-# Build your Java project and run tests with Apache Maven.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
-
 trigger:
-- master
-
-pool:
   name: test
-  vmImage: windows-latest
-
-steps:trigger:
   batch: true
   branches:
     include:
-    - dev
+    - master
   paths:
     exclude:
     - azure-pipelines.yml
     - pom.xml
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 variables:
 - group: Build-Variable-Group
 - name: MAVEN_CACHE_FOLDER
@@ -62,13 +51,3 @@ steps:
     effectivePomSkip: true
     sonarQubeRunAnalysis: false
     goals: 'clean install package deploy $(MAVEN_OPTS)  -DmuleDeploy -Dserver=$(server) -Denvironment=$(environment) -Dworker=$(worker) -DworkerType=$(workerType) -Dapp.runtime=$(app.runtime) -Dapp.name=$(app.name)'
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
