@@ -38,11 +38,6 @@ steps:
         New-Item -Type Directory -Force "${HOME}/.m2"
         Copy-Item -Force "$(settingsxml.secureFilePath)" "${HOME}/.m2/settings.xml"
 
-- script: |
-    echo "Anypoint Username: $(anypoint.username)"
-    echo "Anypoint Password: $(anypoint.password)"
-    displayName: 'Print Anypoint Credentials'
-      
   - task: Maven@3
     inputs:
       mavenPomFile: 'pom.xml'
